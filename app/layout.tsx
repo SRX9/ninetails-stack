@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
 import "./globals.css";
+import { NextUIProvider } from "@nextui-org/react";
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
+import useThemeLocal from "@/hooks/use-theme-local";
+import ThemeLocal from "@/components/ui/ThemeLocal";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +26,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body id="main-div">
+        <NextUIProvider>
+          <SessionProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <main
+                className={cn(
+                  "min-h-screen  font-sans antialiased",
+                  fontSans.variable
+                )}
+              >
+                {children}
+              </main>
+              <ThemeLocal />
+            </ThemeProvider>
+          </SessionProvider>
+        </NextUIProvider>
+        <Toaster />
+      </body>
     </html>
   );
 }
