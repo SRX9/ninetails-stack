@@ -1,24 +1,21 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
-import PostgresAdapter from "@auth/pg-adapter";
-import { getDBPool } from "./Database/dbClient";
-import GitHub from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { db } from "./database/drizzleClient";
 
 export const { handlers, auth, signIn, signOut } = NextAuth(() => {
-  const pool = getDBPool();
   return {
-    adapter: PostgresAdapter(pool),
+    adapter: DrizzleAdapter(db),
     providers: [
-      Google({
-        authorization: {
-          params: {
-            prompt: "consent",
-            access_type: "offline",
-            response_type: "code",
-          },
-        },
+      GoogleProvider({
+        clientId: process.env.AUTH_GOOGLE_ID,
+        clientSecret: process.env.AUTH_GOOGLE_SECRET,
       }),
-      GitHub,
+      GitHubProvider({
+        clientId: process.env.AUTH_GITHUB_ID,
+        clientSecret: process.env.AUTH_GITHUB_SECRET,
+      }),
     ],
   };
 });

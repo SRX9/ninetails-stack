@@ -45,25 +45,19 @@ export function UserAuthForm({
         onClick={() => handleSocialSignIn("google")}
         disabled={!!loader}
         variant="flat"
+        isLoading={loader === "google"}
       >
-        {loader === "google" ? (
-          <Icons.spinner className=" h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.google className=" h-4 w-4" />
-        )}
+        {loader !== "google" && <Icons.google className=" h-4 w-4" />}
         Google
       </Button>
       <Button
         type="button"
         onClick={() => handleSocialSignIn("github")}
+        isLoading={loader === "github"}
         disabled={!!loader}
         variant="flat"
       >
-        {loader === "github" ? (
-          <Icons.spinner className=" h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.gitHub className=" h-4 w-4" />
-        )}
+        {loader !== "github" && <Icons.gitHub className=" h-4 w-4" />}
         GitHub
       </Button>
     </div>

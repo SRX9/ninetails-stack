@@ -12,4 +12,9 @@ export const site_metadata = {
     description: "Sign in to your App and start using.",
     keywords: ["SaaS App login", "SaaS App Sign in", "sign in SaaS App"],
   },
+  Pricing: {
+    name: "Pricing",
+    description: "Pricing Plans for SaaS",
+    keywords: ["Pricing Plans for SaaS", "SaaS Pricing Plans", "SaaS Premium"],
+  },
 };
