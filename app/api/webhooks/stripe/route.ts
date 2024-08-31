@@ -100,23 +100,41 @@ export async function POST(req: Request) {
       .where(eq(users.id, userId as string));
   }
 
+  if (event.type === "customer.subscription.updated") {
+    const subscriptionUpdated = event.data.object as Stripe.Subscription;
+    await db
+      .update(subscriptions)
+      .set({
+        stripeCurrentPeriodEnd: new Date(
+          subscriptionUpdated.current_period_end * 1000
+        ),
+      })
+      .where(eq(subscriptions.stripeSubscriptionId, subscriptionUpdated.id));
+  }
   if (event.type === "customer.subscription.deleted") {
     const subscriptionDeleted = event.data.object as Stripe.Subscription;
 
-    await db
+    const subscriptionUpdate = await db
       .update(subscriptions)
       .set({
         status: ESubscriptionStatus.CANCELED,
       })
-      .where(eq(subscriptions.stripeSubscriptionId, subscriptionDeleted.id));
+      .where(eq(subscriptions.stripeSubscriptionId, subscriptionDeleted.id))
+      .returning({ userId: subscriptions.userId });
 
     // Update Active Plan for User back to Hobby (Update logic if you want to end premium access of user at the end of the month instead of immediately)
-    await db
-      .update(users)
-      .set({
-        active_plan: PricingPlans.HOBBY,
-      })
-      .where(eq(users.id, userId as string));
+    const userId = subscriptionUpdate[0]?.userId;
+
+    if (userId) {
+      await db
+        .update(users)
+        .set({
+          active_plan: PricingPlans.HOBBY,
+        })
+        .where(eq(users.id, userId));
+    } else {
+      console.error("User ID not found for the subscription being deleted.");
+    }
   }
 
   return new Response(null, { status: 200 });
