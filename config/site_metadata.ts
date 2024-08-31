@@ -1,5 +1,5 @@
 export const AppHost = process.env.NEXT_PUBLIC_HOST || "http://localhost:300";
-export const AppHostDomain = "localhost:300";
+export const AppHostDomain = "localhost:3000";
 
 export const site_metadata = {
   name: "Ninetails SaaS Starter",

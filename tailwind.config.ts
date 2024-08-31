@@ -80,7 +80,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui()],
+  plugins: [
+    require("tailwindcss-animate"),
+    nextui(),
+    require("tailwind-scrollbar"),
+  ],
 } satisfies Config;
 
 export default config;

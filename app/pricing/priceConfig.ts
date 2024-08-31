@@ -12,6 +12,7 @@ export interface IPricingPlanDetails {
   cta: string;
   secondaryCta?: string;
   popular?: boolean;
+  plan_id: string;
 }
 
 export const PricingPlansDetails: Record<PricingPlans, IPricingPlanDetails> = {
@@ -29,11 +30,12 @@ export const PricingPlansDetails: Record<PricingPlans, IPricingPlanDetails> = {
       "Community Support",
     ],
     cta: "Start Deploying",
+    plan_id: PricingPlans.HOBBY,
   },
   [PricingPlans.PRO]: {
     name: "Pro",
     description: "Collaborate with a team for growing projects.",
-    price: "$20 /month, per member",
+    price: "$20/month",
     features: [
       "Everything in Hobby, plus:",
       "Secure team collaboration",
@@ -45,6 +47,7 @@ export const PricingPlansDetails: Record<PricingPlans, IPricingPlanDetails> = {
     ],
     cta: "Upgrade now",
     popular: true,
+    plan_id: PricingPlans.PRO,
   },
   [PricingPlans.ENTERPRISE]: {
     name: "Enterprise",
@@ -61,7 +64,17 @@ export const PricingPlansDetails: Record<PricingPlans, IPricingPlanDetails> = {
     ],
     cta: "Contact Sales",
     secondaryCta: "Request Trial",
+    plan_id: PricingPlans.ENTERPRISE,
   },
+};
+
+export const getProductIdBasedOnPlan = (plan: PricingPlans) => {
+  switch (plan) {
+    case PricingPlans.PRO:
+      return process.env.NEXT_PUBLIC_STRIPE_PRO_PRODUCT_ID;
+    default:
+      return process.env.NEXT_PUBLIC_STRIPE_PRO_PRODUCT_ID;
+  }
 };
 
 export interface IPricingBenefit {
@@ -92,3 +105,13 @@ export const PricingBenefits: IPricingBenefit[] = [
     company: "ebay",
   },
 ];
+
+export enum ESubscriptionStatus {
+  TRIALING = "trialing",
+  ACTIVE = "active",
+  CANCELED = "canceled",
+  INCOMPLETE = "incomplete",
+  INCOMPLETE_EXPIRED = "incomplete_expired",
+  PAST_DUE = "past_due",
+  UNPAID = "unpaid",
+}

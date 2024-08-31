@@ -34,7 +34,9 @@ export function UserAuthForm({
     } catch (err) {
       toast.message(TechnicalErrorMessages.GENERAL_ERROR);
     } finally {
-      setLoader(false);
+      setTimeout(() => {
+        setLoader(false);
+      }, 5000);
     }
   };
 

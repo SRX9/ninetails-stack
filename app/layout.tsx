@@ -6,8 +6,8 @@ import { NextUIProvider } from "@nextui-org/react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
-import useThemeLocal from "@/hooks/use-theme-local";
 import ThemeLocal from "@/components/ui/ThemeLocal";
+import NextTopLoader from "nextjs-toploader";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -26,7 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body id="main-div">
+      <body
+        id="main-div"
+        className={cn(
+          "min-h-screen overflow-hidden bg-background antialiased",
+          fontSans.className
+        )}
+      >
         <NextUIProvider>
           <SessionProvider>
             <ThemeProvider
@@ -35,13 +41,22 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <NextTopLoader
+                color="linear-gradient(to right, #fc466b, #3f5efb)"
+                initialPosition={0.08}
+                crawlSpeed={500}
+                height={5}
+                crawl={true}
+                showSpinner={false}
+                easing="ease"
+                speed={500}
+              />
               <main
                 className={cn(
-                  "min-h-screen  font-sans antialiased",
-                  fontSans.variable
+                  "relative h-[100dvh] overflow-auto scrollbar-none scrollbar-track-gray-100  scrollbar-thumb-gray-300 dark:scrollbar-track-gray-900 dark:scrollbar-thumb-gray-800 sm:scrollbar-thin "
                 )}
               >
-                {children}
+                <div className="flex-1">{children}</div>
               </main>
               <ThemeLocal />
             </ThemeProvider>

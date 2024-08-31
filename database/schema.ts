@@ -1,3 +1,4 @@
+import { PricingPlans } from "@/app/pricing/priceConfig";
 import {
   timestamp,
   pgTable,
@@ -15,6 +16,7 @@ export const users = pgTable("user", {
   email: text("email").unique(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+  active_plan: text("active_plan").default(PricingPlans.HOBBY),
 });
 
 export type InsertUser = typeof users.$inferInsert;
@@ -85,6 +87,7 @@ export const subscriptions = pgTable("subscriptions", {
   stripeCurrentPeriodEnd: timestamp("stripe_current_period_end", {
     mode: "date",
   }),
+  status: text("status"),
 });
 
 export type InsertSubscription = typeof subscriptions.$inferInsert;
