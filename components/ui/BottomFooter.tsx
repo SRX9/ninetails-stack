@@ -47,7 +47,7 @@ export function BottomFooter({
           <a
             target={"_blank"}
             className="mx-1.5 text-gray-400 transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-400"
-            href="https://twitter.com/ayesoul_ai"
+            href="https://twitter.com/s_r_x_9"
             rel="noreferrer"
           >
             <svg
@@ -63,7 +63,7 @@ export function BottomFooter({
           <a
             target={"_blank"}
             className="mx-1.5 text-gray-400 transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-400"
-            href="https://www.linkedin.com/company/ayesoul"
+            href="https://github.com/srx9"
             rel="noreferrer"
           >
             <svg
