@@ -11,6 +11,7 @@ import NextTopLoader from "nextjs-toploader";
 import MainLayout from "@/components/navigation/main-layout";
 import { site_metadata } from "@/config/site_metadata";
 import loaderMain from "@/assets/loaderMain";
+import { PHProvider } from "./providers";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -130,18 +131,20 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NextTopLoader
-                color="linear-gradient(to right, #fc466b, #3f5efb)"
-                initialPosition={0.08}
-                crawlSpeed={500}
-                height={5}
-                crawl={true}
-                showSpinner={false}
-                easing="ease"
-                speed={500}
-              />
-              <MainLayout>{children}</MainLayout>
-              <ThemeLocal />
+              <PHProvider>
+                <NextTopLoader
+                  color="linear-gradient(to right, #fc466b, #3f5efb)"
+                  initialPosition={0.08}
+                  crawlSpeed={500}
+                  height={5}
+                  crawl={true}
+                  showSpinner={false}
+                  easing="ease"
+                  speed={500}
+                />
+                <MainLayout>{children}</MainLayout>
+                <ThemeLocal />
+              </PHProvider>
             </ThemeProvider>
           </SessionProvider>
         </NextUIProvider>
