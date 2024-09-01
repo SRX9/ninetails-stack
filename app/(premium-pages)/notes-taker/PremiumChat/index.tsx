@@ -21,7 +21,7 @@ export default function NinetailsChat() {
           onChange={handleInputChange}
         />
       </form>
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className="mb-5" />}
       {messages.slice(-1).map((m) => (
         <div
           key={m.id}
