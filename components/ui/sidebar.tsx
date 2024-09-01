@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Button } from "@nextui-org/react";
 import { Icons } from "../icons/icons";
+import { usePathname } from "next/navigation";
 
 interface Links {
   label: string;
@@ -177,28 +178,43 @@ export const SidebarLink = ({
   className?: string;
   props?: LinkProps;
 }) => {
-  const { open, animate } = useSidebar();
+  const { open, animate, setOpen } = useSidebar();
+
+  const pathname = usePathname();
+
   return (
-    <Link
+    <Button
+      isIconOnly={!open}
+      variant={pathname === link.href ? "shadow" : "flat"}
+      as={Link}
+      fullWidth
       href={link.href}
       className={cn(
-        "flex items-center justify-start gap-4  group/sidebar py-2  ",
+        "flex items-center gap-4  group/sidebar ",
+        open ? "justify-start " : "justify-center",
         className
       )}
-      passHref
+      onClick={() => setOpen(false)}
       {...props}
     >
       {link.icon}
-
-      <motion.span
-        animate={{
-          display: animate ? (open ? "inline-block" : "none") : "inline-block",
-          opacity: animate ? (open ? 1 : 0) : 1,
-        }}
-        className="text-neutral-700 dark:text-neutral-200 text-md group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
-      >
-        {link.label}
-      </motion.span>
-    </Link>
+      {open ? (
+        <motion.span
+          animate={{
+            display: animate
+              ? open
+                ? "inline-block"
+                : "none"
+              : "inline-block",
+            opacity: animate ? (open ? 1 : 0) : 1,
+          }}
+          className="text-neutral-700 dark:text-neutral-200 text-md group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        >
+          {link.label}
+        </motion.span>
+      ) : (
+        <></>
+      )}
+    </Button>
   );
 };

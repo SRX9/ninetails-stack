@@ -20,11 +20,7 @@ export default function IndexPage() {
       <nav className="absolute right-2  hidden sm:flex  top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
         <ThemeToggle />
       </nav>
-      <Link
-        href="/"
-        passHref
-        className="absolute left-5 top-5 md:left-6 md:top-6 "
-      >
+      <div className="absolute left-5 top-5 md:left-6 md:top-6 ">
         <div
           className={cn(
             fontHeading.className,
@@ -33,7 +29,7 @@ export default function IndexPage() {
         >
           Pricing
         </div>
-      </Link>
+      </div>
       <section className="mt-28 sm:mt-20">
         <div className=" relative flex  w-full items-center justify-center px-0 ">
           <div className="w-full  px-5  lg:p-8  md:mt-0 ">

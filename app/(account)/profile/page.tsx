@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect } from "react";
 import Head from "next/head";
-import { Tabs, Tab, Card, CardBody, Skeleton, Button } from "@nextui-org/react";
+import { Tabs, Tab, Card, CardBody, Button } from "@nextui-org/react";
 
 import { cn } from "@/lib/utils";
 import { LucideLogIn } from "lucide-react";
@@ -14,6 +14,7 @@ import { greetMessage } from "@/lib/dateUtils";
 import AccountSection from "./AccountSection";
 import PremiumManage from "./PremiumManage";
 import { BottomFooter } from "@/components/ui/BottomFooter";
+import SkeletonLoader from "@/components/ui/skeleton-loader";
 import { ThemeToggle } from "@/components/controls/theme-toggle";
 
 export default function IndexPage() {
@@ -34,11 +35,10 @@ export default function IndexPage() {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <Suspense>
-        <Link
-          href="/"
-          passHref
-          className="absolute left-5 top-5 md:left-6 md:top-6 "
-        >
+        <nav className="absolute hidden md:flex right-2 top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
+          <ThemeToggle />
+        </nav>
+        <div className="absolute left-5 top-5 md:left-6 md:top-6 ">
           <div
             className={cn(
               fontHeading.className,
@@ -47,7 +47,7 @@ export default function IndexPage() {
           >
             Profile
           </div>
-        </Link>
+        </div>
         <section className="px-2 flex justify-start flex-col items-start gap-6 mt-20 py-8 md:py-10">
           <>
             <div className=" flex justify-center w-full  ">
@@ -64,32 +64,7 @@ export default function IndexPage() {
             </div>
             {authStatusLoading ? (
               <div className=" flex justify-center w-full px-5 pt-5 pb-3 ">
-                <div className=" max-w-[500px] w-full flex flex-col gap-8 justify-center items-center ">
-                  <div className="w-full flex flex-col gap-2">
-                    <Skeleton className="h-3 w-3/5 rounded-lg" />
-                    <Skeleton className="h-3 w-full rounded-lg" />
-                  </div>
-                  <div className="w-full flex flex-col gap-2">
-                    <Skeleton className="h-3 w-3/5 rounded-lg" />
-                    <Skeleton className="h-3 w-4/5 rounded-lg" />
-                  </div>
-                  <div className="w-full flex flex-col gap-2">
-                    <Skeleton className="h-3 w-full rounded-lg" />
-                    <Skeleton className="h-3 w-4/5 rounded-lg" />
-                  </div>
-                  <div className="w-full flex flex-col gap-2">
-                    <Skeleton className="h-3 w-3/5 rounded-lg" />
-                    <Skeleton className="h-3 w-full rounded-lg" />
-                  </div>
-                  <div className="w-full flex flex-col gap-2">
-                    <Skeleton className="h-3 w-3/5 rounded-lg" />
-                    <Skeleton className="h-3 w-4/5 rounded-lg" />
-                  </div>
-                  <div className="w-full flex flex-col gap-2">
-                    <Skeleton className="h-3 w-full rounded-lg" />
-                    <Skeleton className="h-3 w-4/5 rounded-lg" />
-                  </div>
-                </div>
+                <SkeletonLoader />
               </div>
             ) : user?.id ? (
               <div className=" w-full flex justify-center ">

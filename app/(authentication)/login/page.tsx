@@ -29,7 +29,7 @@ export default function IndexPage({ searchParams }: any) {
     <>
       <section>
         <div className=" relative flex h-[100dvh] w-full items-center justify-center px-0 ">
-          <nav className="absolute hidden sm:flex right-2 top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
+          <nav className="absolute hidden md:flex right-2 top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
             <ThemeToggle />
           </nav>
           <Link

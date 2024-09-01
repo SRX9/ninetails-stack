@@ -8,6 +8,13 @@
       "when": 1725132340985,
       "tag": "0000_bored_nehzno",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1725206706659,
+      "tag": "0001_normal_master_chief",
+      "breakpoints": true
     }
   ]
 }

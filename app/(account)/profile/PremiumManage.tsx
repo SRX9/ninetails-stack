@@ -20,7 +20,6 @@ loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const PremiumManage = () => {
   const { user } = useUser();
-  const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [subscriptionEndDate, setSubscriptionEndDate] = useState<Date | null>(
@@ -78,9 +77,7 @@ const PremiumManage = () => {
               className={cn(
                 fontHeading.className,
                 "text-2xl py-2 pt-4 ",
-                "text-transparent bg-clip-text bg-gradient-to-tr font-bold -tracking-tight ",
-                "  from-gray-500 to-slate-900  ",
-                "dark:bg-gradient-to-br dark:from-gray-100 dark:to-slate-700"
+                " font-bold -tracking-tight "
               )}
             >
               {activePlan} Subscription Active
@@ -88,7 +85,7 @@ const PremiumManage = () => {
             {subscriptionEndDate && (
               <div
                 className={cn(
-                  "my-2 bg-default/40 p-2 px-3 rounded-xl text-center  -tracking-tight w-[fit-content]  break-words  "
+                  "my-2 bg-default/40 p-2 px-3 rounded-xl text-center text-sm  -tracking-tight w-[fit-content]  break-words  "
                 )}
               >
                 Plan Renews on {formatDateTimeToFull(subscriptionEndDate)}

@@ -35,10 +35,6 @@ export function BottomFooter({
             Terms
           </Link>
           •
-          <Link href={"/privacy"} scroll={true}>
-            Privacy
-          </Link>
-          •
           <Link href={"/contact"} scroll={true}>
             Contact
           </Link>{" "}

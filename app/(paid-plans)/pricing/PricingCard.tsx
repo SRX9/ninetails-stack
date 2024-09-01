@@ -2,7 +2,7 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { IPricingPlanDetails, PricingPlans } from "./priceConfig";
 import { Button } from "@nextui-org/react";
 import useUser from "@/hooks/use-user";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TechnicalErrorMessages } from "@/lib/MessagesEnum";
 import { toast } from "sonner";
@@ -16,6 +16,12 @@ export function PricingCard({ pricingDetails }: Props) {
   const { user, isLoggedIn } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { isActivePlan } = useMemo(() => {
+    return {
+      isActivePlan: user?.active_plan === pricingDetails.plan_id,
+    };
+  }, [user?.active_plan]);
 
   const onClickUpgrade = async (user?: User, isLoggedIn?: boolean) => {
     switch (pricingDetails.plan_id) {
@@ -84,9 +90,12 @@ export function PricingCard({ pricingDetails }: Props) {
           className="w-full"
           isLoading={loading}
           variant="flat"
-          onClick={() => onClickUpgrade(user, isLoggedIn)}
+          color={isActivePlan ? "success" : "default"}
+          onClick={() =>
+            isActivePlan ? router.push("/") : onClickUpgrade(user, isLoggedIn)
+          }
         >
-          {pricingDetails.cta}
+          {isActivePlan ? "Active Plan" : pricingDetails.cta}
         </Button>
         {pricingDetails.secondaryCta && (
           <Button className="w-full" variant="solid">

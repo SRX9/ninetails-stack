@@ -5,6 +5,7 @@ import {
   text,
   primaryKey,
   integer,
+  serial,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 
@@ -92,3 +93,18 @@ export const subscriptions = pgTable("subscriptions", {
 
 export type InsertSubscription = typeof subscriptions.$inferInsert;
 export type SelectSubscription = typeof subscriptions.$inferSelect;
+
+export const contact = pgTable("contact", {
+  id: serial("id").primaryKey().notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  email: text("email"),
+  userId: text("user_id"),
+  reason: text("reason"),
+  subject: text("subject"),
+  message: text("message"),
+});
+
+export type InsertContact = typeof contact.$inferInsert;
+export type SelectContact = typeof contact.$inferSelect;

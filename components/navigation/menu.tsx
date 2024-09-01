@@ -9,10 +9,25 @@ export const SideBarLinks = [
     ),
   },
   {
+    label: "Notes Taker",
+    href: "/notes-taker",
+    icon: (
+      <Icons.Notes className="text-neutral-700 dark:text-neutral-200  flex-shrink-0" />
+    ),
+  },
+
+  {
     label: "Pricing",
     href: "/pricing",
     icon: (
       <Icons.billing className="text-neutral-700 dark:text-neutral-200 flex-shrink-0" />
+    ),
+  },
+  {
+    label: "Documentation",
+    href: "/documentation",
+    icon: (
+      <Icons.help className="text-neutral-700 dark:text-neutral-200 flex-shrink-0" />
     ),
   },
 ];
