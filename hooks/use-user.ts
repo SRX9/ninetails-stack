@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { useSession, signOut } from "next-auth/react";
+import { User } from "next-auth";
 
 export default function useUser() {
   const { data: session, status } = useSession();
@@ -20,7 +21,7 @@ export default function useUser() {
   };
 
   return {
-    user: session?.user,
+    user: session?.user as User,
     isLoggedIn: status === "authenticated",
     authStatusLoading: status === "loading",
     logOut,

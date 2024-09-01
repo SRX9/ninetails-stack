@@ -16,6 +16,10 @@
 # production
 /build
 
+
+
+react-email-starter/node_modules
+
 # misc
 .DS_Store
 *.pem
@@ -26,13 +30,18 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
 
 .env
 
 # vercel
 .vercel
 
+/database/migrations
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+database/migrations/meta/_journal.json
+database/migrations/meta/0000_snapshot.json
+database/migrations/0000_material_black_tarantula.sql
+database/migrations/0000_material_black_tarantula.sql

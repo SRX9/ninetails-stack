@@ -12,7 +12,7 @@ import { ThemeToggle } from "@/components/controls/theme-toggle";
 import { fontHeading } from "@/config/myFont";
 import { site_metadata } from "@/config/site_metadata";
 import { UserAuthForm } from "./UserAuthForm";
-import { MenuMain } from "@/components/ui/MenuMain";
+import { BottomFooter } from "@/components/ui/BottomFooter";
 
 export default function IndexPage({ searchParams }: any) {
   const router = useRouter();
@@ -29,9 +29,8 @@ export default function IndexPage({ searchParams }: any) {
     <>
       <section>
         <div className=" relative flex h-[100dvh] w-full items-center justify-center px-0 ">
-          <nav className="absolute right-2 top-3 flex items-center gap-2 md:gap-3 md:right-4 md:top-4">
+          <nav className="absolute hidden md:flex right-2 top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
             <ThemeToggle />
-            <MenuMain />
           </nav>
           <Link
             href="/"
@@ -83,7 +82,7 @@ export default function IndexPage({ searchParams }: any) {
                   setIsLoading={setIsLoading}
                 />
               )}
-              <p className="px-8 text-center text-sm text-gray-500 dark:text-gray-400  pb-[10vh] ">
+              <p className="px-8 text-center text-sm text-gray-500 dark:text-gray-400 ">
                 By continuing, you agree to our{" "}
                 <Link href="/terms" className="hover:text-primary">
                   Terms of Service
@@ -94,6 +93,7 @@ export default function IndexPage({ searchParams }: any) {
                 </Link>
                 .
               </p>
+              <BottomFooter />
             </div>
           </div>
         </div>
