@@ -12,6 +12,10 @@ export const stackList = [
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQGluJhW7I1NYU7jF77E-9K9I46_ib_DUNHw&s",
   },
   {
+    title: "Auth.js",
+    img: "https://avatars.githubusercontent.com/u/67470890?s=280&v=4",
+  },
+  {
     title: "PostHog ",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkTqteImyGlzQIJou-nJ18ymYPuGUsMP-ufw&s",
   },
@@ -26,10 +30,6 @@ export const stackList = [
   {
     title: "Vercel AI SDK",
     img: "https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png",
-  },
-  {
-    title: "Shadcn/ui",
-    img: "https://avatars.githubusercontent.com/u/139895814?s=280&v=4",
   },
   {
     title: "Acetenity UI",
