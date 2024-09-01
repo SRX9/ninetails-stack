@@ -206,6 +206,119 @@ export const Icons = {
       />
     </svg>
   ),
+  Cash: (props: any) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      {...props}
+      fill="none"
+    >
+      <path
+        d="M12 18C10.6675 18.6224 8.91707 19 7 19C5.93408 19 4.91969 18.8833 4 18.6726C3.4088 18.5372 3.11319 18.4695 2.75898 18.1892C2.55696 18.0294 2.30483 17.7129 2.19412 17.4803C2 17.0725 2 16.677 2 15.886V5.11397C2 4.12914 3.04003 3.45273 4 3.6726C4.91969 3.88325 5.93408 4 7 4C8.91707 4 10.6675 3.62236 12 3C13.3325 2.37764 15.0829 2 17 2C18.0659 2 19.0803 2.11675 20 2.3274C20.5912 2.46281 20.8868 2.53051 21.241 2.81079C21.443 2.97064 21.6952 3.28705 21.8059 3.51966C22 3.92751 22 4.32299 22 5.11397V15.886C22 16.8709 20.96 17.5473 20 17.3274C19.0803 17.1167 18.0659 17 17 17C15.0829 17 13.3325 17.3776 12 18Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <path
+        d="M2 21C3.33254 21.6224 5.08293 22 7 22C8.91707 22 10.6675 21.6224 12 21C13.3325 20.3776 15.0829 20 17 20C18.9171 20 20.6675 20.3776 22 21"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M14.5 10.5C14.5 11.8807 13.3807 13 12 13C10.6193 13 9.5 11.8807 9.5 10.5C9.5 9.11929 10.6193 8 12 8C13.3807 8 14.5 9.11929 14.5 10.5Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <path
+        d="M5.5 11.5L5.5 11.509"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M18.5 9.49219L18.5 9.50117"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+  login: (props: any) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      {...props}
+      fill="none"
+    >
+      <path
+        d="M14 3.09502C13.543 3.03241 13.0755 3 12.6 3C7.29807 3 3 7.02944 3 12C3 16.9706 7.29807 21 12.6 21C13.0755 21 13.543 20.9676 14 20.905"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M13.5 14.5C12.9943 14.0085 11 12.7002 11 12M13.5 9.5C12.9943 9.99153 11 11.2998 11 12M11 12L21 12"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+  Home: (props: any) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+    >
+      <path
+        d="M15.0002 17C14.2007 17.6224 13.1504 18 12.0002 18C10.8499 18 9.79971 17.6224 9.00018 17"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M2.35157 13.2135C1.99855 10.9162 1.82204 9.76763 2.25635 8.74938C2.69065 7.73112 3.65421 7.03443 5.58132 5.64106L7.02117 4.6C9.41847 2.86667 10.6171 2 12.0002 2C13.3832 2 14.5819 2.86667 16.9792 4.6L18.419 5.64106C20.3462 7.03443 21.3097 7.73112 21.744 8.74938C22.1783 9.76763 22.0018 10.9162 21.6488 13.2135L21.3478 15.1724C20.8473 18.4289 20.5971 20.0572 19.4292 21.0286C18.2613 22 16.5538 22 13.139 22H10.8614C7.44652 22 5.73909 22 4.57118 21.0286C3.40327 20.0572 3.15305 18.4289 2.65261 15.1724L2.35157 13.2135Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+  logout: (props: any) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M14 3.09502C13.543 3.03241 13.0755 3 12.6 3C7.29807 3 3 7.02944 3 12C3 16.9706 7.29807 21 12.6 21C13.0755 21 13.543 20.9676 14 20.905"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M21 12L11 12M21 12C21 11.2998 19.0057 9.99153 18.5 9.5M21 12C21 12.7002 19.0057 14.0085 18.5 14.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

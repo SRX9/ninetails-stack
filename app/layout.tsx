@@ -8,6 +8,8 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import ThemeLocal from "@/components/ui/ThemeLocal";
 import NextTopLoader from "nextjs-toploader";
+import MainLayout from "@/components/navigation/main-layout";
+import { ThemeToggle } from "@/components/controls/theme-toggle";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -51,13 +53,7 @@ export default function RootLayout({
                 easing="ease"
                 speed={500}
               />
-              <main
-                className={cn(
-                  "relative h-[100dvh] overflow-auto scrollbar-none scrollbar-track-gray-100  scrollbar-thumb-gray-300 dark:scrollbar-track-gray-900 dark:scrollbar-thumb-gray-800 sm:scrollbar-thin "
-                )}
-              >
-                <div className="flex-1">{children}</div>
-              </main>
+              <MainLayout>{children}</MainLayout>
               <ThemeLocal />
             </ThemeProvider>
           </SessionProvider>

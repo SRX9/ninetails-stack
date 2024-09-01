@@ -15,25 +15,13 @@ export const GET = async (req: any) => {
 
     const { searchParams } = new URL(req.url);
     const user_id_query = searchParams.get("id");
-    const intent_plan = searchParams.get("plan_id");
-    const email_query = searchParams.get("email");
-
-    if (
-      !user_id_query ||
-      !intent_plan ||
-      !email_query ||
-      session?.user?.id !== user_id_query ||
-      session?.user?.email !== email_query
-    ) {
+    if (!user_id_query || session?.user?.id !== user_id_query) {
       throw new Error("No 'id' query parameter found");
     }
 
     const documentSubscriptionResponse = await db
       .select({
-        stripeSubscriptionId: subscriptions.stripeSubscriptionId,
-        userId: subscriptions.userId,
         stripeCurrentPeriodEnd: subscriptions.stripeCurrentPeriodEnd,
-        stripePriceId: subscriptions.stripePriceId,
       })
       .from(subscriptions)
       .where(
@@ -46,15 +34,13 @@ export const GET = async (req: any) => {
 
     let documentSubscription = documentSubscriptionResponse?.[0];
 
-    if (
-      documentSubscription?.userId === session?.user?.id &&
-      documentSubscription?.userId === user_id_query
-    ) {
-      return new Response(JSON.stringify({ status: true }));
-    } else {
-      return new Response(JSON.stringify({ status: false }));
-    }
+    return new Response(
+      JSON.stringify({
+        subscription_end: documentSubscription?.stripeCurrentPeriodEnd,
+      })
+    );
   } catch (err) {
-    return new Response(JSON.stringify({ status: false }));
+    console.log(err, "Asds");
+    return new Response(JSON.stringify({ subscription_end: null }));
   }
 };

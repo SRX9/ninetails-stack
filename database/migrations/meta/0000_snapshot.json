@@ -1,5 +1,5 @@
 {
-  "id": "c82b5f8f-1c12-4ce5-85cd-54a8afd0906d",
+  "id": "ff9da086-56e0-4f52-9cab-bd9774f1239d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -177,6 +177,12 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -246,6 +252,13 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "active_plan": {
+          "name": "active_plan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Hobby'"
         }
       },
       "indexes": {},

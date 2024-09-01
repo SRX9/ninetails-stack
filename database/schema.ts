@@ -1,4 +1,4 @@
-import { PricingPlans } from "@/app/pricing/priceConfig";
+import { PricingPlans } from "@/app/(paid-plans)/pricing/priceConfig";
 import {
   timestamp,
   pgTable,

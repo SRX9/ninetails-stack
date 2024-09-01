@@ -12,6 +12,7 @@ import { Button } from "@nextui-org/react";
 import useUser from "@/hooks/use-user";
 import { fontHeading } from "@/config/myFont";
 import { BottomFooter } from "@/components/ui/BottomFooter";
+import { ThemeToggle } from "@/components/controls/theme-toggle";
 
 export default function IndexPage() {
   const { user, authStatusLoading } = useUser();
@@ -90,6 +91,9 @@ export default function IndexPage() {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <section className="container mt-16 sm:mt-[20vh] grid items-center gap-6 pb-8 pt-6 md:py-10">
+        <nav className="absolute right-2  hidden sm:flex  top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
+          <ThemeToggle />
+        </nav>
         <div className="flex flex-col items-center justify-center gap-2">
           <h1
             className={cn(

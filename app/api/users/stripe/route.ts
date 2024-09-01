@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import {
   getProductIdBasedOnPlan,
   PricingPlans,
-} from "@/app/pricing/priceConfig";
+} from "@/app/(paid-plans)/pricing/priceConfig";
 import { stripe } from "@/lib/stripeClient";
 
 export const GET = async (req: any) => {

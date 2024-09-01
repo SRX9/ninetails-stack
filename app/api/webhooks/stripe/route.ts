@@ -3,7 +3,10 @@ import Stripe from "stripe";
 import { eq } from "drizzle-orm";
 import { subscriptions, users } from "@/database/schema";
 import { db } from "@/database/drizzleClient";
-import { ESubscriptionStatus, PricingPlans } from "@/app/pricing/priceConfig";
+import {
+  ESubscriptionStatus,
+  PricingPlans,
+} from "@/app/(paid-plans)/pricing/priceConfig";
 import { stripe } from "@/lib/stripeClient";
 
 export async function POST(req: Request) {

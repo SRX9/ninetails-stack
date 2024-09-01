@@ -7,7 +7,6 @@ import Image from "next/image";
 import { ThemeToggle } from "@/components/controls/theme-toggle";
 import { fontHeading } from "@/config/myFont";
 import { site_metadata } from "@/config/site_metadata";
-import { MenuMain } from "@/components/ui/MenuMain";
 import { BottomFooter } from "@/components/ui/BottomFooter";
 import { PricingPlansDetails } from "./priceConfig";
 import { PricingCard } from "./PricingCard";
@@ -18,9 +17,8 @@ loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "");
 export default function IndexPage() {
   return (
     <>
-      <nav className="absolute right-2 top-3 flex items-center gap-2 md:gap-3 md:right-4 md:top-4">
+      <nav className="absolute right-2  hidden sm:flex  top-3  items-center gap-2 md:gap-3 md:right-4 md:top-4">
         <ThemeToggle />
-        <MenuMain />
       </nav>
       <Link
         href="/"
@@ -36,7 +34,7 @@ export default function IndexPage() {
           Pricing
         </div>
       </Link>
-      <section className="mt-40">
+      <section className="mt-28 sm:mt-20">
         <div className=" relative flex  w-full items-center justify-center px-0 ">
           <div className="w-full  px-5  lg:p-8  md:mt-0 ">
             <div className="mx-auto flex w-full flex-col justify-center space-y-6 ">
@@ -49,7 +47,7 @@ export default function IndexPage() {
                   alt={`${site_metadata.name} Logo"`}
                 />
               </div>
-              <div className="flex flex-col pt-5 pb-7 space-y-2 text-center ">
+              <div className="flex flex-col  pb-3 space-y-2 text-center ">
                 <h1
                   className={cn(
                     fontHeading.className,
@@ -64,7 +62,7 @@ export default function IndexPage() {
               </div>
 
               <div className="w-full flex justify-center">
-                <div className=" gap-5 h-full  w-full max-w-7xl flex flex-col items-start justify-center sm:grid  sm:grid-cols-3 ">
+                <div className=" gap-5 h-full  w-full max-w-7xl flex flex-col items-start justify-center lg:grid  lg:grid-cols-3 ">
                   {Object.values(PricingPlansDetails).map((plan) => (
                     <PricingCard pricingDetails={plan} key={plan.name} />
                   ))}

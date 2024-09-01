@@ -4,7 +4,7 @@ export const AppHostDomain = "localhost:3000";
 export const site_metadata = {
   name: "Ninetails SaaS Starter",
   description: "",
-  logo: "https://media.ayehigh.com/image_1724960499120.jpg",
+  logo: "https://ayesoul.com/cdn-cgi/image/width=96,quality=auto/android-chrome-512x512.png",
   ogImage: "",
   twitterHandle: "",
   login: {

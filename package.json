@@ -17,6 +17,7 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@react-three/fiber": "^8.17.6",
     "@stripe/stripe-js": "^4.4.0",
+    "@tabler/icons-react": "^3.14.0",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
