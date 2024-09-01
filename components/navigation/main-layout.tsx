@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { Icons } from "../icons/icons";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
-  const { user } = useUser();
+  const { user, isLoggedIn, authStatusLoading, logOut } = useUser();
   const [open, setOpen] = useState(false);
   useEffect(() => {
     let intervalId: any;
@@ -56,7 +56,18 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                 ))}
               </div>
             </div>
-            <div className=" flex flex-col gap-2 justify-center items-center ">
+            <div className=" flex flex-col gap-3 justify-center items-center ">
+              {isLoggedIn && !authStatusLoading && (
+                <SidebarLink
+                  link={{
+                    label: "Logout",
+                    click: logOut,
+                    icon: (
+                      <Icons.logout className="text-neutral-700 dark:text-neutral-200  flex-shrink-0" />
+                    ),
+                  }}
+                />
+              )}
               <SidebarLink
                 link={{
                   label: user?.name ? `Profile ` : "Login",

@@ -10,8 +10,9 @@ import { usePathname } from "next/navigation";
 
 interface Links {
   label: string;
-  href: string;
+  href?: string;
   icon: React.JSX.Element | React.ReactNode;
+  click?: any;
 }
 
 interface SidebarContextProps {
@@ -186,7 +187,7 @@ export const SidebarLink = ({
     <Button
       isIconOnly={!open}
       variant={pathname === link.href ? "shadow" : "flat"}
-      as={Link}
+      as={link.click ? Button : Link}
       fullWidth
       href={link.href}
       className={cn(
@@ -194,7 +195,12 @@ export const SidebarLink = ({
         open ? "justify-start " : "justify-center",
         className
       )}
-      onClick={() => setOpen(false)}
+      onClick={() => {
+        if (link?.click) {
+          link.click();
+        }
+        setOpen(false);
+      }}
       {...props}
     >
       {link.icon}

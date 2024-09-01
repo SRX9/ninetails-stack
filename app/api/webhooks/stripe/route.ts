@@ -114,6 +114,7 @@ export async function POST(req: Request) {
       })
       .where(eq(subscriptions.stripeSubscriptionId, subscriptionUpdated.id));
   }
+
   if (event.type === "customer.subscription.deleted") {
     const subscriptionDeleted = event.data.object as Stripe.Subscription;
 
