@@ -1,4 +1,4 @@
-Refer Ninetails official Documentation to get started: [Ninetails Documentation](http://localhost:3000](https://ninetails-stack.vercel.app/documentation)
+Refer Ninetails official Documentation to get started: [Ninetails Documentation](https://ninetails-stack.vercel.app/documentation]
 
 ## Getting Started
 
