@@ -33,9 +33,11 @@ export default function Page() {
           Ninetails Documentation
         </div>
         <div className=" text-default-500 pt-2 text-base font-medium ">
-          Ninetails SaaS Starter Kit for AI, IndieHacking or Startups MVP. Earn
-          your first Dollars on the Internet
+          Ninetails SaaS Starter Kit for AI, IndieHacking or Startups MVP.
         </div>
+        <blockquote className="mt-6 border-l-2 pl-6 italic">
+          5 Steps to Earning your first Dollars on the Internet
+        </blockquote>
         <div
           className={cn(
             fontHeading.className,
@@ -78,7 +80,7 @@ export default function Page() {
             variables. To Just get started, Below are the few platforms you will
             need to create account on to get some of the Variables values.
           </p>
-          <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+          <ul className="my-6 md:ml-6  list-disc [&>li]:mt-2">
             <li>
               <a
                 href="https://neon.tech?ref=ninetails-stack.dev"
@@ -104,7 +106,58 @@ export default function Page() {
             <li>PostHog: Website Analytics</li>
           </ul>
           <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-            3. Deployment
+            3. Setup Tables in Database
+          </h3>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            We are using Drizzle ORM to work with database. Go to{" "}
+            <kbd>database/schema.ts</kbd> file to find all the tables schema we
+            are using. You can add tables schema as you like. Make sure to not
+            delete existing property of tables like users, accounts, sessions,
+            verification_token as they are required for our Auth.js library.
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Now go to terminal and run following commands.
+          </p>
+          <Snippet className="w-full  h-14 text-lg  ">
+            npx drizzle-kit generate
+          </Snippet>
+          <Snippet className="w-full mt-5 h-14 text-lg  ">
+            npx drizzle-kit migrate
+          </Snippet>
+          <h3 className="mt-14 scroll-m-20 text-2xl font-semibold tracking-tight">
+            4. Create Subscription Product on Stripe
+          </h3>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            We are using Stripe for Payments collections of our paid plans. Go
+            to Stripe, Set it up (if you don't know there are few simple video
+            tutorials on youtube you can find).
+          </p>{" "}
+          <ul className="my-6  md:ml-6  list-disc [&>li]:mt-2">
+            <li>
+              {" "}
+              Create a Recurring Product, Get its Price ID and past it in .env
+              file as mentioned before
+            </li>{" "}
+            <li>Go to Developers {"->"} Webhooks in stripe</li>
+            <li>
+              Setup Stripe WebHook with these events selected:{" "}
+              <ul className="my-6  md:ml-6   list-disc [&>li]:mt-2">
+                <li>checkout.session.completed</li>
+                <li>invoice.payment_succeeded</li>
+                <li>customer.subscription.updated</li>
+                <li>customer.subscription.deleted</li>
+              </ul>
+            </li>
+            <li>
+              Set Webhook Endpoint URL as
+              <Snippet className="w-full mt-5 h-14 text-lg  ">
+                https://your-website-domain.com/api/webhooks/stripe
+              </Snippet>
+            </li>
+          </ul>
+          <p className="leading-7 [&:not(:first-child)]:mt-6"></p>
+          <h3 className="mt-14 scroll-m-20 text-2xl font-semibold tracking-tight">
+            5. Deployment
           </h3>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             Deployment is very easy for Next.js App. Most commonly and easy to
@@ -117,13 +170,13 @@ export default function Page() {
             </a>
           </p>
           <h3 className="mt-16 scroll-m-20 text-2xl font-semibold tracking-tight">
-            4. Have a Question?
+            6. Have a Question?
           </h3>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             If you have any questions you can reach out to below mentioned
             Handles.
           </p>
-          <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+          <ul className="my-6  md:ml-6  list-disc [&>li]:mt-2">
             <li>
               <a
                 href="https://twitter.com/s_r_x_9"
@@ -144,21 +197,20 @@ export default function Page() {
             </li>
           </ul>
           <h3 className="mt-16 scroll-m-20 text-2xl font-semibold tracking-tight">
-            5. Want to show Support?
+            7. Want to show Support?
           </h3>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             If this starter template helped you and you want to show some
             support. Here are few ways.
           </p>
-          <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+          <ul className="my-6  md:ml-6  list-disc [&>li]:mt-2">
             <li>
               <a
                 href="https://github.com/SRX9/ninetails-stack"
                 target="_blank"
                 className="flex justify-start items-center gap-2 "
               >
-                <Icons.sun className="size-4" /> Star on GitHub Repository of
-                NineTails
+                Star <Icons.sun className="size-4" /> on GitHub
               </a>
             </li>
             <li>

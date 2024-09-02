@@ -16,6 +16,10 @@ export const stackList = [
     img: "https://avatars.githubusercontent.com/u/67470890?s=280&v=4",
   },
   {
+    title: "Drizzle ORM",
+    img: "https://images.opencollective.com/drizzle-orm/9405e48/logo/256.png",
+  },
+  {
     title: "PostHog ",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkTqteImyGlzQIJou-nJ18ymYPuGUsMP-ufw&s",
   },
@@ -30,9 +34,5 @@ export const stackList = [
   {
     title: "Vercel AI SDK",
     img: "https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png",
-  },
-  {
-    title: "Acetenity UI",
-    img: "https://ui.aceternity.com/logo-dark.png",
   },
 ];

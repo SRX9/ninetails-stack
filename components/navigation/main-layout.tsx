@@ -11,6 +11,7 @@ import { Icons } from "../icons/icons";
 const MainLayout = ({ children }: { children: ReactNode }) => {
   const { user, isLoggedIn, authStatusLoading, logOut } = useUser();
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     let intervalId: any;
     let count = 0;
@@ -36,6 +37,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       clearInterval(intervalId);
     };
   }, []);
+
   return (
     <>
       <div id="loaderMain">

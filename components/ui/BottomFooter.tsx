@@ -39,8 +39,8 @@ export function BottomFooter({
             Contact
           </Link>{" "}
           •
-          <Link href={"/about"} scroll={true}>
-            About
+          <Link href={"/documentation"} scroll={true}>
+            Documentation
           </Link>
         </div>
         <div className="flex items-center justify-center gap-3 pt-4 ">

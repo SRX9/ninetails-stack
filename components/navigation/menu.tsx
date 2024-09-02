@@ -9,8 +9,8 @@ export const SideBarLinks = [
     ),
   },
   {
-    label: "Notes Taker",
-    href: "/notes-taker",
+    label: "Premium Feature",
+    href: "/premium-feature",
     icon: (
       <Icons.Notes className="text-neutral-700 dark:text-neutral-200  flex-shrink-0" />
     ),
