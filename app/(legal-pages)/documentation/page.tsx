@@ -129,8 +129,8 @@ export default function Page() {
           </h3>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             We are using Stripe for Payments collections of our paid plans. Go
-            to Stripe, Set it up (if you don't know there are few simple video
-            tutorials on youtube you can find).
+            to Stripe, Set it up (if you don{"'"}t know there are few simple
+            video tutorials on youtube you can find).
           </p>{" "}
           <ul className="my-6  md:ml-6  list-disc [&>li]:mt-2">
             <li>
