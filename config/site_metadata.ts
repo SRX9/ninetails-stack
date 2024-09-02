@@ -2,7 +2,7 @@ export const AppHost = process.env.NEXT_PUBLIC_HOST || "http://localhost:300";
 export const AppHostDomain = "localhost:3000";
 
 export const site_metadata = {
-  name: "Ninetails SaaS Starter",
+  name: "Ninetails Stack SaaS Starter",
   description:
     "An easy-to-use SaaS starter stack kit designed for indie hackers, startups, and MVPs to launch AI-powered side projects and earn their first dollar online.",
   logo: `/android-chrome-192x192.png`,
