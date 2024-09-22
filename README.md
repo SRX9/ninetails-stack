@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/9c17aa2e-d2ed-43eb-8ac4-acf048014390)# Ninetails Documentation
 
 ### Build. Ship. Earn. at lightspeed
 
