@@ -1,4 +1,4 @@
-# Ninetails Documentation
+![image](https://github.com/user-attachments/assets/9c17aa2e-d2ed-43eb-8ac4-acf048014390)# Ninetails Documentation
 
 ### Build. Ship. Earn. at lightspeed
 
@@ -83,3 +83,6 @@ If this starter template helped you and you want to show some support, here are 
 - [Follow on Twitter](https://twitter.com/s_r_x_9)
 - [Follow on GitHub](https://github.com/SRX9)
 - [Sponsor on Github](https://github.com/sponsors/SRX9)
+
+  ![image](https://github.com/user-attachments/assets/8d03dddd-946d-4509-bf1b-0dc9db57c235)
+
