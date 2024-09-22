@@ -1,16 +1,20 @@
+import { NextResponse } from "next/server";
 import { ESubscriptionStatus } from "@/app/(paid-plans)/pricing/priceConfig";
-import { auth } from "@/auth";
 import { db } from "@/database/drizzleClient";
 import { subscriptions } from "@/database/schema";
 import { APIMessage } from "@/lib/MessagesEnum";
 import { eq, and } from "drizzle-orm";
+import { getAPISession } from "@/lib/supaUtils";
 
-export const GET = async (req: any) => {
+export const GET = async (req: Request) => {
   try {
-    const session = await auth();
+    const session = await getAPISession();
 
-    if (!session || !session?.user?.id) {
-      return new Response(APIMessage.LOGIN_tO_CONTINUE_USE);
+    if (!session) {
+      return NextResponse.json(
+        { error: APIMessage.LOGIN_tO_CONTINUE_USE },
+        { status: 401 }
+      );
     }
 
     const { searchParams } = new URL(req.url);
@@ -22,10 +26,10 @@ export const GET = async (req: any) => {
       !user_id_query ||
       !intent_plan ||
       !email_query ||
-      session?.user?.id !== user_id_query ||
-      session?.user?.email !== email_query
+      session.user.id !== user_id_query ||
+      session.user.email !== email_query
     ) {
-      throw new Error("No 'id' query parameter found");
+      throw new Error("Invalid query parameters");
     }
 
     const documentSubscriptionResponse = await db
@@ -38,7 +42,7 @@ export const GET = async (req: any) => {
       .from(subscriptions)
       .where(
         and(
-          eq(subscriptions.userId, user_id_query as string),
+          eq(subscriptions.userId, user_id_query),
           eq(subscriptions.status, ESubscriptionStatus.ACTIVE)
         )
       )
@@ -47,14 +51,14 @@ export const GET = async (req: any) => {
     let documentSubscription = documentSubscriptionResponse?.[0];
 
     if (
-      documentSubscription?.userId === session?.user?.id &&
+      documentSubscription?.userId === session.user.id &&
       documentSubscription?.userId === user_id_query
     ) {
-      return new Response(JSON.stringify({ status: true }));
+      return NextResponse.json({ status: true });
     } else {
-      return new Response(JSON.stringify({ status: false }));
+      return NextResponse.json({ status: false });
     }
   } catch (err) {
-    return new Response(JSON.stringify({ status: false }));
+    return NextResponse.json({ status: false });
   }
 };

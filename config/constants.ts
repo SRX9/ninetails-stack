@@ -4,23 +4,19 @@ export const stackList = [
     img: "https://pbs.twimg.com/profile_images/1565710214019444737/if82cpbS_400x400.jpg",
   },
   {
-    title: "Neon Database",
-    img: "https://pbs.twimg.com/profile_images/1658763245325254659/1o0WFQns_400x400.jpg",
+    title: "Supabase",
+    img: "https://avatars.githubusercontent.com/u/54469796?v=4",
   },
   {
     title: "Stripe",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQGluJhW7I1NYU7jF77E-9K9I46_ib_DUNHw&s",
   },
   {
-    title: "Auth.js",
-    img: "https://avatars.githubusercontent.com/u/67470890?s=280&v=4",
-  },
-  {
     title: "Drizzle ORM",
     img: "https://images.opencollective.com/drizzle-orm/9405e48/logo/256.png",
   },
   {
-    title: "PostHog ",
+    title: "PostHog",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkTqteImyGlzQIJou-nJ18ymYPuGUsMP-ufw&s",
   },
   {
@@ -34,5 +30,9 @@ export const stackList = [
   {
     title: "Vercel AI SDK",
     img: "https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png",
+  },
+  {
+    title: "TypeScript",
+    img: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png",
   },
 ];

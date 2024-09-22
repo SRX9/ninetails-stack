@@ -4,8 +4,6 @@ import { ThemeToggle } from "@/components/controls/theme-toggle";
 import { Icons } from "@/components/icons/icons";
 import { BottomFooter } from "@/components/ui/BottomFooter";
 import { Cover } from "@/components/ui/cover";
-import { FlipWords } from "@/components/ui/flip-words";
-import { Separator } from "@/components/ui/separator";
 import { stackList } from "@/config/constants";
 import { fontHeading } from "@/config/myFont";
 import { site_metadata } from "@/config/site_metadata";

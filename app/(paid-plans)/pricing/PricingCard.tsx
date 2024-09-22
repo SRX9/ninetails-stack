@@ -1,12 +1,12 @@
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { IPricingPlanDetails, PricingPlans } from "./priceConfig";
 import { Button } from "@nextui-org/react";
-import useUser from "@/hooks/use-user";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TechnicalErrorMessages } from "@/lib/MessagesEnum";
 import { toast } from "sonner";
-import { User } from "next-auth";
+import { User } from "@supabase/supabase-js";
+import useUser from "@/hooks/use-user";
 
 type Props = {
   pricingDetails: IPricingPlanDetails;
@@ -19,11 +19,11 @@ export function PricingCard({ pricingDetails }: Props) {
 
   const { isActivePlan } = useMemo(() => {
     return {
-      isActivePlan: user?.active_plan === pricingDetails.plan_id,
+      isActivePlan: user?.user_metadata?.active_plan === pricingDetails.plan_id,
     };
-  }, [user?.active_plan]);
+  }, [user?.user_metadata?.active_plan]);
 
-  const onClickUpgrade = async (user?: User, isLoggedIn?: boolean) => {
+  const onClickUpgrade = async () => {
     switch (pricingDetails.plan_id) {
       case PricingPlans.PRO:
         try {
@@ -36,8 +36,8 @@ export function PricingCard({ pricingDetails }: Props) {
               }
             );
 
-            let redirectURL = await redirectURLRes.text();
-            window.location.href = redirectURL;
+            let redirectURL = await redirectURLRes.json();
+            window.location.href = redirectURL?.url;
           } else {
             router.push("/login");
           }
@@ -61,20 +61,20 @@ export function PricingCard({ pricingDetails }: Props) {
   };
 
   return (
-    <CardSpotlight className=" h-full w-full p-6 flex flex-col justify-between">
+    <CardSpotlight className="h-full w-full p-6 flex flex-col justify-between">
       {pricingDetails.popular && (
-        <div className="absolute top-0 right-0 border bg-black dark:bg-white text-white dark:text-black  text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-md">
+        <div className="absolute top-0 right-0 border bg-black dark:bg-white text-white dark:text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-md">
           Popular
         </div>
       )}
       <div>
-        <p className="text-2xl font-bold relative z-20 mt-2 ">
+        <p className="text-2xl font-bold relative z-20 mt-2">
           {pricingDetails.name}
         </p>
         <p className="text-default-500 mt-2 relative z-20 text-sm">
           {pricingDetails.description}
         </p>
-        <p className="text-3xl font-bold  mt-4 relative z-20">
+        <p className="text-3xl font-bold mt-4 relative z-20">
           {pricingDetails.price}
         </p>
         <div className="text-default-200 mt-6 relative z-20">
@@ -91,9 +91,7 @@ export function PricingCard({ pricingDetails }: Props) {
           isLoading={loading}
           variant="flat"
           color={isActivePlan ? "success" : "default"}
-          onClick={() =>
-            isActivePlan ? router.push("/") : onClickUpgrade(user, isLoggedIn)
-          }
+          onClick={() => (isActivePlan ? router.push("/") : onClickUpgrade())}
         >
           {isActivePlan ? "Active Plan" : pricingDetails.cta}
         </Button>
@@ -111,7 +109,7 @@ const Step = ({ title }: { title: string }) => {
   return (
     <li className="flex gap-2 items-start">
       <CheckIcon />
-      <p className=" text-black dark:text-white ">{title}</p>
+      <p className="text-black dark:text-white">{title}</p>
     </li>
   );
 };
@@ -123,21 +121,21 @@ const CheckIcon = () => {
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      className=" text-gray-500 mr-1  "
+      className="text-gray-500 mr-1"
       fill="none"
     >
       <path
         d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 11.3151 21.9311 10.6462 21.8 10"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <path
         d="M8 12.5C8 12.5 9.5 12.5 11.5 16C11.5 16 17.0588 6.83333 22 5"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

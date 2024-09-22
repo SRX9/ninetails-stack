@@ -4,7 +4,7 @@ import { Avatar, Chip } from "@nextui-org/react";
 import Image from "next/image";
 
 const AccountSection = () => {
-  const { user } = useUser();
+  const { avatar, email } = useUser();
 
   /**
    * Use This component to Edit Profile Details and Other Account related Information updates
@@ -23,7 +23,7 @@ const AccountSection = () => {
               <Image
                 height={150}
                 width={150}
-                src={user?.image as string}
+                src={avatar}
                 alt={"avatar"}
                 referrerPolicy="no-referrer"
                 className=" border-0 cursor-pointer "
@@ -36,7 +36,7 @@ const AccountSection = () => {
               "my-2 bg-default/40   -tracking-tight w-[fit-content]  max-w-[60%] line-clamp-1 "
             )}
           >
-            {user?.email}
+            {email}
           </Chip>
           <p className="text-tiny text-default-500 max-w-[100%]">
             Your Primary Email, used for communication regarding your account

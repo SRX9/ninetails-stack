@@ -1,18 +1,22 @@
+import { NextResponse } from "next/server";
 import { APIMessage, IErrorMessages } from "@/lib/MessagesEnum";
 import { AppHost } from "@/config/site_metadata";
-import { auth } from "@/auth";
 import {
   getProductIdBasedOnPlan,
   PricingPlans,
 } from "@/app/(paid-plans)/pricing/priceConfig";
 import { stripe } from "@/lib/stripeClient";
+import { getAPISession } from "@/lib/supaUtils";
 
-export const GET = async (req: any) => {
+export const GET = async (req: Request) => {
   try {
-    const session = await auth();
+    const session = await getAPISession();
 
-    if (!session || !session?.user?.id) {
-      return new Response(APIMessage.LOGIN_tO_CONTINUE_USE);
+    if (!session) {
+      return NextResponse.json(
+        { error: APIMessage.LOGIN_tO_CONTINUE_USE },
+        { status: 401 }
+      );
     }
 
     const { searchParams } = new URL(req.url);
@@ -24,10 +28,10 @@ export const GET = async (req: any) => {
       !user_query_id ||
       !intent_plan ||
       !email_query ||
-      session?.user?.id !== user_query_id ||
-      session?.user?.email !== email_query
+      session.user.id !== user_query_id ||
+      session.user.email !== email_query
     ) {
-      throw new Error("No 'id' query parameter found");
+      throw new Error("Invalid query parameters");
     }
 
     const sessionStripe = await stripe.checkout.sessions.create({
@@ -46,8 +50,12 @@ export const GET = async (req: any) => {
       success_url: `${AppHost}/payment-status?success=true&user_id=${user_query_id}&intent_plan=${intent_plan}`,
       cancel_url: `${AppHost}/payment-status?canceled=true&user_id=${user_query_id}&intent_plan=${intent_plan}`,
     });
-    return new Response(sessionStripe.url);
+
+    return NextResponse.json({ url: sessionStripe.url });
   } catch (err) {
-    return new Response(IErrorMessages.TECHNICAL_ERROR);
+    return NextResponse.json(
+      { error: IErrorMessages.TECHNICAL_ERROR },
+      { status: 500 }
+    );
   }
 };

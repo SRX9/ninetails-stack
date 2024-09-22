@@ -48,13 +48,14 @@ export default function Page() {
         </div>
         <div className=" text-default-500  text-base font-medium ">
           Few things to help you get started that can help and know what you are
-          dealing with.
+          dealing with. (More detailed documentation is in progress with extra
+          features around payment & email)
         </div>
         <div className="pt-3">
           <p className="leading-7 [&:not(:first-child)]:mt-6">
-            Project uses Next.js 14 (App Router), Tailwind CSS, Neon
-            PostgresSQL, Drizzle ORM, Stripe, Vercel AI SDK, Auth.js, Resend
-            Emails, PostHog Analytics, Shadcn UI, Acerternity UI, Magic UI and
+            Project uses Next.js 14 (App Router), Supabase, PostgresSQL, Drizzle
+            ORM, Stripe, Vercel AI SDK, Auth.js, Resend Emails, PostHog
+            Analytics, Tailwind CSS, Shadcn UI, Acerternity UI, Magic UI and
             more.
           </p>
           <blockquote className="mt-6 border-l-2 pl-6 italic">
@@ -82,11 +83,14 @@ export default function Page() {
           </p>
           <ul className="my-6 md:ml-6  list-disc [&>li]:mt-2">
             <li>
-              <a
-                href="https://neon.tech?ref=ninetails-stack.dev"
-                target="_blank"
-              >
-                Neon DB
+              <a href="https://supabase.com/auth" target="_blank">
+                Supabase Auth
+              </a>
+              : Configure Auth Providers like Google, GitHub as per your wish
+            </li>
+            <li>
+              <a href="https://supabase.com/database" target="_blank">
+                Supabase DB
               </a>
               : PostgreSQL Database
             </li>

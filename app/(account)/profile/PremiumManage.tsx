@@ -1,25 +1,19 @@
 import useUser from "@/hooks/use-user";
 import { loadStripe } from "@stripe/stripe-js";
 import { cn } from "@/lib/utils";
-import { Avatar, Button, Chip } from "@nextui-org/react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { Button } from "@nextui-org/react";
 import { useEffect, useMemo, useState } from "react";
-import {
-  ESubscriptionStatus,
-  PricingPlans,
-} from "@/app/(paid-plans)/pricing/priceConfig";
+import { PricingPlans } from "@/app/(paid-plans)/pricing/priceConfig";
 import { fontHeading } from "@/config/myFont";
 import { LucideCreditCard } from "lucide-react";
 import Link from "next/link";
 import { Icons } from "@/components/icons/icons";
-import { TechnicalErrorMessages } from "@/lib/MessagesEnum";
 import { formatDateTimeToFull } from "@/lib/dateUtils";
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const PremiumManage = () => {
-  const { user } = useUser();
+  const { user, active_plan } = useUser();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [subscriptionEndDate, setSubscriptionEndDate] = useState<Date | null>(
@@ -28,12 +22,11 @@ const PremiumManage = () => {
   const email = user?.email;
 
   const { isPlanActive, activePlan } = useMemo(() => {
-    let premiumStatus = user?.active_plan;
     return {
-      isPlanActive: premiumStatus === PricingPlans.PRO,
-      activePlan: premiumStatus,
+      isPlanActive: active_plan === PricingPlans.PRO,
+      activePlan: active_plan,
     };
-  }, [user?.active_plan]);
+  }, [active_plan]);
 
   const fetchSubscriptionDetails = async (user_id: string) => {
     try {
