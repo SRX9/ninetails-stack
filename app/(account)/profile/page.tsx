@@ -19,15 +19,13 @@ import { ThemeToggle } from "@/components/controls/theme-toggle";
 
 export default function IndexPage() {
   const router = useRouter();
-  const { isLoggedIn, user, authStatusLoading } = useUser();
+  const { isLoggedIn, user, name, authStatusLoading } = useUser();
 
   useEffect(() => {
     if (!isLoggedIn && !authStatusLoading) {
       router.push("/login");
     }
   }, [isLoggedIn, authStatusLoading]);
-
-  const name = user?.name;
 
   return (
     <>

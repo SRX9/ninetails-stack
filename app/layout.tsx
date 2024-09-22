@@ -3,15 +3,14 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/react";
-import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import ThemeLocal from "@/components/ui/ThemeLocal";
 import NextTopLoader from "nextjs-toploader";
 import MainLayout from "@/components/navigation/main-layout";
 import { site_metadata } from "@/config/site_metadata";
-import loaderMain from "@/assets/loaderMain";
 import { PHProvider } from "./providers";
+import loaderMain from "@/assets/loaderMain";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -75,7 +74,7 @@ export const metadata: Metadata = {
   manifest: `${site_metadata.url}/site.webmanifest`,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -115,7 +114,7 @@ export default function RootLayout({
           content="index,follow,max-image-preview:large"
         />
         <style>{loaderMain}</style>
-      </head>
+      </head>{" "}
       <body
         id="main-div"
         className={cn(
@@ -124,29 +123,27 @@ export default function RootLayout({
         )}
       >
         <NextUIProvider>
-          <SessionProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <PHProvider>
-                <NextTopLoader
-                  color="linear-gradient(to right, #fc466b, #3f5efb)"
-                  initialPosition={0.08}
-                  crawlSpeed={500}
-                  height={5}
-                  crawl={true}
-                  showSpinner={false}
-                  easing="ease"
-                  speed={500}
-                />
-                <MainLayout>{children}</MainLayout>
-                <ThemeLocal />
-              </PHProvider>
-            </ThemeProvider>
-          </SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <PHProvider>
+              <NextTopLoader
+                color="linear-gradient(to right, #fc466b, #3f5efb)"
+                initialPosition={0.08}
+                crawlSpeed={500}
+                height={5}
+                crawl={true}
+                showSpinner={false}
+                easing="ease"
+                speed={500}
+              />
+              <MainLayout>{children}</MainLayout>
+              <ThemeLocal />
+            </PHProvider>
+          </ThemeProvider>
         </NextUIProvider>
         <Toaster />
       </body>

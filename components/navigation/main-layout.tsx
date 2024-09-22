@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils";
 import { Icons } from "../icons/icons";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
-  const { user, isLoggedIn, authStatusLoading, logOut } = useUser();
+  const { avatar, name, email, isLoggedIn, authStatusLoading, logOut } =
+    useUser();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       >
         <Sidebar open={open} setOpen={setOpen} animate={true}>
           <SidebarBody className="justify-between gap-10">
-            <div className="justify-start flex gap-2 flex-col">
+            <div className="justify-center flex gap-2 flex-col">
               <div className="flex flex-col gap-3  justify-center items-center">
                 {SideBarLinks.map((link, idx) => (
                   <SidebarLink key={idx} link={link} />
@@ -72,11 +73,11 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
               )}
               <SidebarLink
                 link={{
-                  label: user?.name ? `Profile ` : "Login",
-                  href: user?.id ? "/profile" : "/login",
-                  icon: user?.image ? (
+                  label: name ? name : "Login",
+                  href: email ? "/profile" : "/login",
+                  icon: avatar ? (
                     <Image
-                      src={user?.image}
+                      src={avatar}
                       className="h-7 w-7 flex-shrink-0 rounded-full"
                       width={50}
                       height={50}

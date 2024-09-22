@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/controls/theme-toggle";

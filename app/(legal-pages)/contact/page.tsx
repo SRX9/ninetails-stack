@@ -1,15 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, Loader2 } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
-import { TechnicalErrorMessages } from "@/lib/MessagesEnum";
 import { cn } from "@/lib/utils";
 import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { toast } from "sonner";
-import useUser from "@/hooks/use-user";
-import Image from "next/image";
-import { site_metadata } from "@/config/site_metadata";
 import { BottomFooter } from "@/components/ui/BottomFooter";
 import { fontHeading } from "@/config/myFont";
 import { ThemeToggle } from "@/components/controls/theme-toggle";
@@ -22,7 +18,6 @@ interface IForm {
 }
 
 export default function Page() {
-  const { user } = useUser();
   const [form, setForm] = useState<IForm>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);

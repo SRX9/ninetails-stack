@@ -18,15 +18,14 @@ import { ThemeToggle } from "@/components/controls/theme-toggle";
 
 export default function IndexPage() {
   const router = useRouter();
-  const { isLoggedIn, user, authStatusLoading } = useUser();
+  const { isLoggedIn, user, active_plan, authStatusLoading } = useUser();
 
   const { isPlanActive } = useMemo(() => {
-    let premiumStatus = user?.active_plan;
     return {
-      isPlanActive: premiumStatus === PricingPlans.PRO,
-      activePlan: premiumStatus,
+      isPlanActive: active_plan === PricingPlans.PRO,
+      activePlan: active_plan,
     };
-  }, [user?.active_plan]);
+  }, [active_plan]);
 
   useEffect(() => {
     if (!authStatusLoading) {

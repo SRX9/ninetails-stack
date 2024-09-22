@@ -1,20 +1,28 @@
-import { auth } from "@/auth";
+import { NextResponse } from "next/server";
 import { db } from "@/database/drizzleClient";
 import { contact } from "@/database/schema";
 import { APIMessage } from "@/lib/MessagesEnum";
+import { getAPISession } from "@/lib/supaUtils";
 
-export const POST = async (req: any) => {
+export const POST = async (req: Request) => {
   try {
-    const session = await auth();
+    // Initialize Supabase client
+    const session = await getAPISession();
 
-    if (!session || !session?.user?.id) {
-      return new Response(APIMessage.LOGIN_tO_CONTINUE_USE);
+    if (!session) {
+      return NextResponse.json(
+        { error: APIMessage.LOGIN_tO_CONTINUE_USE },
+        { status: 401 }
+      );
     }
 
     const { email, reason, subject, message } = await req.json();
 
     if (!email || !reason || !subject || !message) {
-      return new Response("Missing required fields", { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
     await db.insert(contact).values({
@@ -22,17 +30,17 @@ export const POST = async (req: any) => {
       reason,
       subject,
       message,
-      userId: session?.user?.id || "Guest User",
+      userId: session.user.id || "Guest User",
     });
 
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
     console.error("Error handling contact submission:", err);
-    return new Response(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         success: false,
         error: "Failed to submit contact request",
-      }),
+      },
       { status: 500 }
     );
   }

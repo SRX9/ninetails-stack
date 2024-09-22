@@ -1,22 +1,26 @@
+import { NextResponse } from "next/server";
 import { ESubscriptionStatus } from "@/app/(paid-plans)/pricing/priceConfig";
-import { auth } from "@/auth";
 import { db } from "@/database/drizzleClient";
 import { subscriptions } from "@/database/schema";
 import { APIMessage } from "@/lib/MessagesEnum";
 import { eq, and } from "drizzle-orm";
+import { getAPISession } from "@/lib/supaUtils";
 
-export const GET = async (req: any) => {
+export async function GET(request: Request) {
   try {
-    const session = await auth();
+    const session = await getAPISession();
 
-    if (!session || !session?.user?.id) {
-      return new Response(APIMessage.LOGIN_tO_CONTINUE_USE);
+    if (!session) {
+      return NextResponse.json(
+        { error: APIMessage.LOGIN_tO_CONTINUE_USE },
+        { status: 401 }
+      );
     }
 
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = new URL(request.url);
     const user_id_query = searchParams.get("id");
-    if (!user_id_query || session?.user?.id !== user_id_query) {
-      throw new Error("No 'id' query parameter found");
+    if (!user_id_query || session.user.id !== user_id_query) {
+      throw new Error("Invalid user ID");
     }
 
     const documentSubscriptionResponse = await db
@@ -26,7 +30,7 @@ export const GET = async (req: any) => {
       .from(subscriptions)
       .where(
         and(
-          eq(subscriptions.userId, user_id_query as string),
+          eq(subscriptions.userId, user_id_query),
           eq(subscriptions.status, ESubscriptionStatus.ACTIVE)
         )
       )
@@ -34,13 +38,11 @@ export const GET = async (req: any) => {
 
     let documentSubscription = documentSubscriptionResponse?.[0];
 
-    return new Response(
-      JSON.stringify({
-        subscription_end: documentSubscription?.stripeCurrentPeriodEnd,
-      })
-    );
+    return NextResponse.json({
+      subscription_end: documentSubscription?.stripeCurrentPeriodEnd,
+    });
   } catch (err) {
-    console.log(err, "Asds");
-    return new Response(JSON.stringify({ subscription_end: null }));
+    console.error(err);
+    return NextResponse.json({ subscription_end: null });
   }
-};
+}

@@ -16,7 +16,7 @@ import { BottomFooter } from "@/components/ui/BottomFooter";
 
 export default function IndexPage({ searchParams }: any) {
   const router = useRouter();
-  const { isLoggedIn, authStatusLoading } = useUser();
+  const { isLoggedIn, authStatusLoading, user } = useUser();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
