@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/controls/theme-toggle";
 import { Icons } from "@/components/icons/icons";
 import { BottomFooter } from "@/components/ui/BottomFooter";
 import { Cover } from "@/components/ui/cover";
+import { FeatureListSection } from "@/components/ui/FeatureListSection";
 import { stackList } from "@/config/constants";
 import { fontHeading } from "@/config/myFont";
 import { site_metadata } from "@/config/site_metadata";
@@ -85,6 +86,19 @@ export default function Home() {
                 </CardFooter>
               </Card>
             ))}
+          </div>
+        </div>
+        <div className=" max-w-3xl mt-40">
+          <div
+            className={cn(
+              fontHeading.className,
+              "text-3xl pb-8 w-full text-center font-semibold  -tracking-tighter"
+            )}
+          >
+            What you'll get?
+          </div>
+          <div className="flex flex-wrap justify-center items-start gap-5 ">
+            <FeatureListSection />
           </div>
         </div>
         <div className="pt-36">
