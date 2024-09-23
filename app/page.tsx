@@ -95,7 +95,7 @@ export default function Home() {
               "text-3xl pb-8 w-full text-center font-semibold  -tracking-tighter"
             )}
           >
-            What you'll get?
+            What you{"'"}ll get?
           </div>
           <div className="flex flex-wrap justify-center items-start gap-5 ">
             <FeatureListSection />
