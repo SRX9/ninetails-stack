@@ -69,7 +69,7 @@ Deployment is very easy for Next.js App. The most common and easy-to-use platfor
 
 ## 6. Have a Question?
 
-If you have any questions, you can reach out to the following handles:
+If you have any questions, create an issue or you can reach out to the following handles:
 
 - [SRX9 Twitter](https://twitter.com/s_r_x_9)
 - [GitHub Profile](https://github.com/SRX9)
@@ -83,5 +83,5 @@ If this starter template helped you and you want to show some support, here are 
 - [Follow on GitHub](https://github.com/SRX9)
 - [Sponsor on Github](https://github.com/sponsors/SRX9)
 
-  ![image](https://github.com/user-attachments/assets/8d03dddd-946d-4509-bf1b-0dc9db57c235)
+![image](https://github.com/user-attachments/assets/8d03dddd-946d-4509-bf1b-0dc9db57c235)
 
