@@ -1,5 +1,5 @@
 
-### Build. Ship. Earn. at lightspeed
+### Build. Ship. Earn. at lightspeed, Best for Microsaas 
 
 Earn your first Dollars on the Internet with NineTails Stack Template, An Open-Source easy-to-use SaaS starter kit designed for indie hackers, startups, and MVPs to quickly get starter, build & launch ideas and earn their first dollar online.
 Ninetails SaaS Starter Kit for AI, IndieHacking or Startups MVP.
