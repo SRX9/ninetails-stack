@@ -66,6 +66,7 @@ We are using Stripe for payment collection of our paid plans. Go to Stripe and s
 ## 5. Deployment
 
 Deployment is very easy for Next.js App. The most common and easy-to-use platform you can use is [Vercel](https://vercel.com?ref=ninetails-stack.dev).
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world)
 
 ## 6. Have a Question?
 
